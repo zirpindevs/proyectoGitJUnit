@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,4 +117,28 @@ class EventTest {
         eventTester.removeSpeaker(speakerNormal);
         assertEquals(eventTester.getSpeakers().size(),0);
     }
+
+    @Test
+    @DisplayName("Test add and set speakers")
+    public void testAddSpeakers()
+    {
+        Event eventTester = new Event();
+        List<Speaker> speakersList = new ArrayList<Speaker>();
+        Speaker speakerSenior = new Speaker(1L,"John","senior");
+        Speaker speakerNormal = new Speaker(2L,"Jim","normal");
+
+        assertFalse(speakerSenior.equals(speakerNormal));
+
+
+        speakersList.add(speakerSenior);
+        speakersList.add(speakerNormal);
+
+        eventTester.setSpeakers(speakersList);
+
+        assertNotNull(eventTester.getSpeakers());
+        assertEquals(speakersList.stream().count(),2);
+
+    }
+
+
 }
