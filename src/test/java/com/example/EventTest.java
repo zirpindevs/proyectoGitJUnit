@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.service.EventNotificationService;
+import com.example.service.EventNotificationServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
 
+    @Test
+    @DisplayName("Test event constructor")
+    public void testEventConstructor()
+    {
+        EventType techType = EventType.TECH;
+        EventNotificationService myEventServ = new EventNotificationServiceImpl();
+
+        Event eventTester = new Event(1L, "java conference", techType, myEventServ);
+        assertNotNull(eventTester);
+
+    }
     @Test
     @DisplayName("Test add attendee")
     public void TestAddAttendee()
@@ -40,5 +53,7 @@ class EventTest {
         assertEquals(attendeeList.stream().count(),2);
 
     }
+
+
 
 }
