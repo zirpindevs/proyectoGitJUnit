@@ -54,6 +54,23 @@ class EventTest {
 
     }
 
+    @Test
+    @DisplayName("Test remove attendees")
+    public void testRemoveAttendes()
+    {
+        Event eventTester = new Event();
+        ArrayList<Attendee> attendeeList = new ArrayList<>();
+        Attendee attendee1 = new Attendee(1L,"thor","thor@email.es");
+        Attendee attendee2 = new Attendee(2L,"loki","loki@email.es");
 
+        attendeeList.add(0,attendee1);
+        attendeeList.add(1,attendee2);
+
+        eventTester.setAttendees(attendeeList);
+
+        eventTester.removeAttendees(attendeeList);;
+
+        assertEquals(attendeeList.stream().count(), 0);
+    }
 
 }
