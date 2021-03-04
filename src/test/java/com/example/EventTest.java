@@ -13,14 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class EventTest {
 
     @Test
-    @DisplayName("Test event constructor")
+    @DisplayName("Test event constructors")
     public void testEventConstructor()
     {
-        EventType techType = EventType.TECH;
         EventNotificationService myEventServ = new EventNotificationServiceImpl();
-
-        Event eventTester = new Event(1L, "java conference", techType, myEventServ);
+        Event eventManualTester = new Event();
+        Event eventTester = new Event(1L, "java conference", EventType.TECH, myEventServ);
         assertNotNull(eventTester);
+
+        eventManualTester.setId(2L);
+        eventManualTester.setTitle("Manual setter");
+        eventManualTester.setType(EventType.BUSINESS);
+
+        assertEquals(2L, eventManualTester.getId());
+        assertNotEquals("java conference", eventManualTester.getTitle());
+        assertEquals(EventType.BUSINESS, eventManualTester.getType());
 
     }
     @Test
@@ -139,6 +146,5 @@ class EventTest {
         assertEquals(speakersList.stream().count(),2);
 
     }
-
 
 }
