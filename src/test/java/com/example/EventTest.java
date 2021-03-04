@@ -54,6 +54,22 @@ class EventTest {
 
     }
 
+
+    @Test
+    @DisplayName("Test remove attendee object")
+    public void testRemoveAttendee()
+    {
+        Event eventTester = new Event();
+        Attendee attendee1 = new Attendee(1L,"thor","thor@email.es");
+        eventTester.addAttendee(attendee1);
+
+        assertNotNull(attendee1);
+        assertEquals(eventTester.getAttendees().size(), 1);
+
+        eventTester.removeAttendee(attendee1);
+        assertEquals(eventTester.getAttendees().size(), 0);
+    }
+
     @Test
     @DisplayName("Test remove attendees")
     public void testRemoveAttendes()
