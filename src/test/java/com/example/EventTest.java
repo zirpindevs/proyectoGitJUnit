@@ -157,8 +157,8 @@ class EventTest {
     }
 
     @Test
-    @DisplayName("Test set message")
-    public void testSetMessage()
+    @DisplayName("Test set message notification")
+    public void testSetMessageNotification()
     {
         Notification notificationSet = new Notification();
         notificationSet.setMessage("this is a instert test message");
