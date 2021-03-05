@@ -147,4 +147,22 @@ class EventTest {
 
     }
 
+    @Test
+    @DisplayName("Test create notification")
+    public void testCreateNotification()
+    {
+        String messageTest = "Hello this is a test!";
+        Notification notificationtest = new Notification(messageTest);
+        assertEquals(messageTest,notificationtest.getMessage());
+    }
+
+    @Test
+    @DisplayName("Test set message")
+    public void testSetMessage()
+    {
+        Notification notificationSet = new Notification();
+        notificationSet.setMessage("this is a instert test message");
+        assertNotNull(notificationSet);
+    }
+
 }
