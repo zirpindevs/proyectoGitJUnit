@@ -3,6 +3,7 @@ package com.example;
 import com.example.service.EventNotificationService;
 import com.example.service.EventNotificationServiceImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,8 +36,8 @@ class EventNotificationTest {
 
 
     @Test
-    @DisplayName("check announce with mockito test")
-    public void checkAnnounceMockitoTest()
+    @DisplayName("check mockito tests")
+    public void checkMockitoTests()
     {
         ArrayList<Attendee> attendeeList = new ArrayList<>();
         Attendee attendee1 = new Attendee(1L,"thor","thor@email.es");
@@ -45,13 +47,10 @@ class EventNotificationTest {
         attendeeList.add(1,attendee2);
 
         eventTester.addAttendees(attendeeList);
-        eventTester.setAttendees(attendeeList);
 
         when(eventTester.getAttendees()).thenReturn(attendeeList);
         eventNotificationService.announce(eventTester);
+        eventNotificationService.confirmAttendance(eventTester, attendee1);
         verify(eventTester, times(3)).getAttendees();
-
     }
-
-
 }
