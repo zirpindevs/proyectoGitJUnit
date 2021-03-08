@@ -10,8 +10,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class EventTest
+ * @Author Javier Moreno
+ *
+ * Test class that check interactions of Event Class with Attendee, EventType and Speaker classes
+ *
+ */
+
 class EventTest {
 
+    /**
+     * Test Event Constructors
+     *
+     * Check Event void constructor
+     * Check Event constructor with arguments
+     *
+     */
     @Test
     @DisplayName("Test event constructors")
     public void testEventConstructor()
@@ -30,21 +45,34 @@ class EventTest {
         assertEquals(EventType.BUSINESS, eventManualTester.getType());
 
     }
+
+    /**
+     * Test Add a Attendee
+     * It creates an attendee instance and then add it from a Event instance
+     *
+     */
     @Test
     @DisplayName("Test add attendee")
     public void TestAddAttendee()
     {
         Attendee attendee1 = new Attendee();
+        Event eventTester = new Event();
+
         attendee1.setId(1L);
         attendee1.setNickname("thor");
         attendee1.setEmail("thor@email.es");
 
-        Event eventTester = new Event();
         eventTester.addAttendee(attendee1);;
         assertNotNull(attendee1);
         assertEquals(eventTester.getAttendees().size(),1);
     }
 
+
+    /**
+     * Test add and set attendees
+     * 
+     * This class creates a couple of attendee instances and at it to a list to check
+     */
     @Test
     @DisplayName("Test add and set attendees")
     public void testAddAttendees()
@@ -61,11 +89,14 @@ class EventTest {
         eventTester.setAttendees(attendeeList);
 
         assertNotNull(eventTester.getAttendees());
-        assertEquals(attendeeList.stream().count(),2);
+        assertEquals((long) attendeeList.size(),2);
 
     }
 
-
+    /**
+     * Test remove an attendee object
+     *
+     */
     @Test
     @DisplayName("Test remove attendee object")
     public void testRemoveAttendee()
@@ -81,6 +112,10 @@ class EventTest {
         assertEquals(eventTester.getAttendees().size(), 0);
     }
 
+    /**
+     * Test remove attendees
+     * It creates a couple of attendees and added to a list for them test to remove with assert
+     */
     @Test
     @DisplayName("Test remove attendees")
     public void testRemoveAttendes()
@@ -100,6 +135,11 @@ class EventTest {
         assertEquals(attendeeList.stream().count(), 0);
     }
 
+    /**
+     * Test create a speaker
+     *  Check Speaker void constructor
+     *  Check Speaker constructor with arguments
+     */
     @Test
     @DisplayName("Test create speaker")
     public void createSpeaker()
@@ -108,10 +148,15 @@ class EventTest {
         Speaker speakerNull = new Speaker();
         Event eventTester = new Event();
         eventTester.addSpeaker(speakerSenior);
+        assertNotNull(speakerNull);
         assertNotNull(eventTester);
         assertEquals(eventTester.getSpeakers().size(),1);
         }
 
+    /**
+     * Test remove speaker
+     * Check create a speaker and then remove it from a Event instance
+     */
     @Test
     @DisplayName("Test remove speaker")
     public void removeSpeaker()
@@ -125,6 +170,11 @@ class EventTest {
         assertEquals(eventTester.getSpeakers().size(),0);
     }
 
+    /**
+     * Test add and set speakers
+     *
+     * This class creates a couple of speakers instances and at it to a list to check
+     */
     @Test
     @DisplayName("Test add and set speakers")
     public void testAddSpeakers()
@@ -145,24 +195,6 @@ class EventTest {
         assertNotNull(eventTester.getSpeakers());
         assertEquals(speakersList.stream().count(),2);
 
-    }
-
-    @Test
-    @DisplayName("Test create notification")
-    public void testCreateNotification()
-    {
-        String messageTest = "Hello this is a test!";
-        Notification notificationtest = new Notification(messageTest);
-        assertEquals(messageTest,notificationtest.getMessage());
-    }
-
-    @Test
-    @DisplayName("Test set message notification")
-    public void testSetMessageNotification()
-    {
-        Notification notificationSet = new Notification();
-        notificationSet.setMessage("this is a instert test message");
-        assertNotNull(notificationSet);
     }
 
 }

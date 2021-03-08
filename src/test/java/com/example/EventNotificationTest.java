@@ -20,23 +20,40 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Class EventNotificationTest
+ * @Author Javier Moreno
+ *
+ *  * Test class that check interactions of eventNotificationService Class with:
+ *      * EventNotificationServiceImpl class
+ *      * Notification class
+ *
+ */
 @ExtendWith(MockitoExtension.class)
-/*
-@MockitoSettings(strictness = Strictness.LENIENT)
-*/
 class EventNotificationTest {
 
-    //DEPENDENCIA
+
+    /**
+     *
+     * Check mockito tests
+     *
+     * This function test with a mock method
+     * The Mock will be a Event instance
+     * The SUT will be EventNotificationServiceImpl instance
+     * Adding attendee users to a list and then checking the 3 interactions produced.
+     *
+     */
+
     @Mock
     Event eventTester;
 
-    // SUT
     @InjectMocks
     EventNotificationService eventNotificationService = new EventNotificationServiceImpl();
 
 
     @Test
-    @DisplayName("check mockito tests")
+    @DisplayName("Check mockito tests")
     public void checkMockitoTests()
     {
         ArrayList<Attendee> attendeeList = new ArrayList<>();
@@ -53,4 +70,34 @@ class EventNotificationTest {
         eventNotificationService.confirmAttendance(eventTester, attendee1);
         verify(eventTester, times(3)).getAttendees();
     }
+
+
+    /**
+     * Test create notification
+     * Check create a notification constructor with a String and return gets values
+     */
+
+    @Test
+    @DisplayName("Test create notification")
+    public void testCreateNotification()
+    {
+        String messageTest = "Hello this is a test!";
+        Notification notificationtest = new Notification(messageTest);
+        assertEquals(messageTest,notificationtest.getMessage());
+    }
+
+    /**
+     * Test set message notification
+     * Check set a notification void constructor and then set String message
+     */
+
+    @Test
+    @DisplayName("Test set message notification")
+    public void testSetMessageNotification()
+    {
+        Notification notificationSet = new Notification();
+        notificationSet.setMessage("this is a instert test message");
+        assertNotNull(notificationSet);
+    }
+
 }
