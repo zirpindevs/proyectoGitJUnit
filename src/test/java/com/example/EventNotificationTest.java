@@ -100,4 +100,32 @@ class EventNotificationTest {
         assertNotNull(notificationSet);
     }
 
+    @Test
+    @DisplayName("Test add anew ttendee")
+    public void TestAddAttendee()
+    {
+        Attendee attendee1 = new Attendee();
+        Event eventTester = new Event();
+
+        attendee1.setId(1L);
+        attendee1.setNickname("horus");
+        attendee1.setEmail("horus@email.es");
+
+        eventTester.addAttendee(attendee1);;
+        assertNotNull(attendee1);
+        assertEquals(eventTester.getAttendees().size(),1);
+    }
+
+    @Test
+    @DisplayName("Test expertise ")
+    public void removeSpeaker()
+    {
+        Speaker speakerNormal = new Speaker();
+        speakerNormal.setId(5L);
+        speakerNormal.setExpertise("pro");
+        speakerNormal.setName("Alfred");
+        Event eventTester = new Event();
+        eventTester.removeSpeaker(speakerNormal);
+        assertEquals(eventTester.getSpeakers().size(),0);
+    }
 }
